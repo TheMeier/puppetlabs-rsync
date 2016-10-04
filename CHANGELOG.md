@@ -24,7 +24,7 @@ This release includes several new parameters and puppet 4 support.
     - `port`
   - rsync::server::module
     - `transfer_logging`
-    - `log_format'
+    - `log_format`
 
 ####Bugfixes
 - Fix testing
