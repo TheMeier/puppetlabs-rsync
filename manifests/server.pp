@@ -21,7 +21,6 @@ class rsync::server(
     'Debian' => '/etc/rsyncd.conf',
     'RedHat' => '/etc/rsyncd.conf',
     'suse'   => '/etc/rsyncd.conf',
-    'RedHat' => '/etc/rsyncd.conf',
     default  => '/etc/rsync.conf',
   }
   $servicename = $::osfamily ? {
