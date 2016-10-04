@@ -1,3 +1,36 @@
+##2016-09-21 - Release 0.5.1
+###Summary
+This release includes new parameters.
+
+####Features
+- New parameters
+  - rsync::server::module
+    - `$log_file`
+    - `$ignore_nonreadable`
+
+
+##2016-09-21 - Release 0.5.0
+###Summary
+This release includes several new parameters and puppet 4 support.
+
+####Features
+- Add SuSE and RedHat support
+- New parameters
+  - rsync
+    - `$manage_package`
+    - `$puts`
+    - `$gets`
+  - rsync::server
+    - `port`
+  - rsync::server::module
+    - `transfer_logging`
+    - `log_format'
+
+####Bugfixes
+- Fix testing
+- Compatibility with puppet 4 and future parser
+
+
 ##2015-01-20 - Release 0.4.0
 ###Summary
 
