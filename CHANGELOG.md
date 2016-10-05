@@ -1,4 +1,14 @@
-##2016-09-21 - Release 0.5.1
+##2016-10-04 - Release 0.5.2
+###Summary
+This release improves test and metadata
+
+####Features
+- Add metadata_lint check
+- Add os_supportt metadata
+- Bound ranges for dependencies
+- Add tags
+
+##2016-10-05 - Release 0.5.1
 ###Summary
 This release includes new parameters.
 

@@ -1,17 +1,29 @@
 {
   "name": "themeier-rsync",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "author": "Christoph Maser",
   "summary": "Manages rsync clients, repositories, and servers, & providies defines to easily grab data via rsync.",
   "license": "Apache-2.0",
   "source": "https://github.com/TheMeier/puppetlabs-rsync",
   "project_page": "https://github.com/TheMeier/puppetlabs-rsync",
   "issues_url": "https://github.com/TheMeier/puppetlabs-rsync/issues",
-  "tags": ["rsync", "rsyncd" ],
+  "tags": [
+    "rsync",
+    "rsyncd"
+  ],
   "dependencies": [
-    {"name":"puppetlabs/stdlib","version_requirement":">=4.2.0 < 5.0.0"},
-    {"name":"puppetlabs/xinetd","version_requirement":">=2.0.0 < 3.0.0"},
-    {"name":"puppetlabs/concat","version_requirement":">=2.0.0 < 3.0.0"}
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">=4.2.0 < 5.0.0"
+    },
+    {
+      "name": "puppetlabs/xinetd",
+      "version_requirement": ">=2.0.0 < 3.0.0"
+    },
+    {
+      "name": "puppetlabs/concat",
+      "version_requirement": ">=2.0.0 < 3.0.0"
+    }
   ],
   "operatingsystem_support": [
     {
