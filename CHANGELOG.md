@@ -1,3 +1,7 @@
+##2016-12-15 - Release 0.5.3
+###Summary
+This release replaces erb templates wuith epp templates
+
 ##2016-10-04 - Release 0.5.2
 ###Summary
 This release improves test and metadata

@@ -64,7 +64,31 @@ define rsync::server::module (
   $log_file           = undef)  {
 
   concat::fragment { "frag-${name}":
-    content => template('rsync/module.erb'),
+    content => epp('rsync/module.epp',{
+      'name'               => $name,
+      'path'               => $path,
+      'order'              => $order,
+      'comment'            => $comment,
+      'read_only'          => $read_only,
+      'write_only'         => $write_only,
+      'list'               => $list,
+      'uid'                => $uid,
+      'gid'                => $gid,
+      'incoming_chmod'     => $incoming_chmod,
+      'outgoing_chmod'     => $outgoing_chmod,
+      'max_connections'    => $max_connections,
+      'lock_file'          => $lock_file,
+      'secrets_file'       => $secrets_file,
+      'exclude'            => $exclude,
+      'auth_users'         => $auth_users,
+      'hosts_allow'        => $hosts_allow,
+      'hosts_deny'         => $hosts_deny,
+      'transfer_logging'   => $transfer_logging,
+      'log_format'         => $log_format,
+      'refuse_options'     => $refuse_options,
+      'ignore_nonreadable' => $ignore_nonreadable,
+      'log_file'           => $log_file,
+    }),
     target  => $rsync::server::conf_file,
     order   => $order,
   }

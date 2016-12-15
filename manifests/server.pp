@@ -69,7 +69,7 @@ class rsync::server(
   # - $motd_file
   concat::fragment { 'rsyncd_conf_header':
     target  => $conf_file,
-    content => template('rsync/header.erb'),
+    content => epp('rsync/header.epp'),
     order   => '00_header',
   }
 
