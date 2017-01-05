@@ -25,16 +25,16 @@ comment            = <%= $comment %>
 secrets file       = <%= $secrets_file %>
 <% } -%>
 <% if $auth_users { -%>
-auth users         = <%= Array($auth_users).join(', ')%>
+auth users         = <%= $auth_users.join(', ')%>
 <% } -%>
 <% if $hosts_allow { -%>
-hosts allow        = <%= Array($hosts_allow).join(' ')%>
+hosts allow        = <%= $hosts_allow.join(' ')%>
 <% } -%>
 <% if $hosts_deny { -%>
-hosts deny         = <%= Array($hosts_deny).join(' ')%>
+hosts deny         = <%= $hosts_deny.join(' ')%>
 <% } -%>
 <% if $exclude { -%>
-exclude            = <%= Array($exclude).join(' ')%>
+exclude            = <%= $exclude.join(' ')%>
 <% } -%>
 <% if $transfer_logging { -%>
 transfer logging   = <%= $transfer_logging %>
@@ -43,7 +43,7 @@ transfer logging   = <%= $transfer_logging %>
 log format         = <%= $log_format %>
 <% } -%>
 <% if $refuse_options { -%>
-refuse options     = <%= Array($refuse_options).join(' ')%>
+refuse options     = <%= $refuse_options.join(' ')%>
 <% } -%>
 <% if $ignore_nonreadable { -%>
 ignore nonreadable = <%= $ignore_nonreadable %>
