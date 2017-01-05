@@ -1,3 +1,9 @@
+##2017-01-05 - Release 0.6.0
+###Summary
+Force array type for array params of rsync::server::module. 
+In previous versions it was possible to pass string values for array params. The witch to epp
+let to string values split by character
+
 ##2016-12-15 - Release 0.5.3
 ###Summary
 This release replaces erb templates with epp templates
