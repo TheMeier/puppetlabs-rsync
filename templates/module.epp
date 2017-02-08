@@ -51,3 +51,9 @@ ignore nonreadable = <%= $ignore_nonreadable %>
 <% if $log_file { -%>
 log file = <%= $log_file %>
 <% } -%>
+<% if $pre_xfer_exec { -%>
+pre-xfer exec= <%= $pre_xfer_exec %>
+<% } -%>
+<% if $post_xfer_exec { -%>
+post-xfer exec= <%= $post_xfer_exec %>
+<% } -%>

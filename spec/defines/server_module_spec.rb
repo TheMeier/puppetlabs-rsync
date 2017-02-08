@@ -47,6 +47,8 @@ describe 'rsync::server::module', :type => :define do
     it { is_expected.not_to contain_concat__fragment(fragment_name).with_content(/^transfer logging\s*=.*$/) }
     it { is_expected.not_to contain_concat__fragment(fragment_name).with_content(/^log format\s*=.*$/) }
     it { is_expected.not_to contain_concat__fragment(fragment_name).with_content(/^refuse options\s*=.*$/) }
+    it { is_expected.not_to contain_concat__fragment(fragment_name).with_content(/^pre-xfer exec\s*=.*$/) }
+    it { is_expected.not_to contain_concat__fragment(fragment_name).with_content(/^post-xfer exec\s*=.*$/) }
   end
 
   describe "when overriding max connections" do
@@ -55,6 +57,20 @@ describe 'rsync::server::module', :type => :define do
     end
     it { is_expected.to contain_concat__fragment(fragment_name).with_content(/^max connections\s*=\s*1$/) }
     it { is_expected.to contain_concat__fragment(fragment_name).with_content(/^lock file\s*=\s*\/var\/run\/rsyncd\.lock$/) }
+  end
+
+  describe "when overriding pre_xfer_exec" do
+    let :params do
+      mandatory_params.merge({ :pre_xfer_exec => '/bin/echo' })
+    end
+    it { is_expected.to contain_concat__fragment(fragment_name).with_content(/^pre-xfer exec\s*=\s*\/bin\/echo$/) }
+  end
+
+  describe "when overriding post_xfer_exec" do
+    let :params do
+      mandatory_params.merge({ :post_xfer_exec => '/bin/echo' })
+    end
+    it { is_expected.to contain_concat__fragment(fragment_name).with_content(/^post-xfer exec\s*=\s*\/bin\/echo$/) }
   end
 
   describe "when setting incoming chmod to false" do
@@ -82,7 +98,7 @@ describe 'rsync::server::module', :type => :define do
     :transfer_logging   => 'true',
     :log_format         => '%t %a %m %f %b',
     :refuse_options     => ['c', 'delete'],
-    :ignore_nonreadable => 'yes'
+    :ignore_nonreadable => 'yes',
   }.each do |k,v|
     describe "when overriding #{k}" do
       let :params do
