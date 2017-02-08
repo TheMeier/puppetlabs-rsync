@@ -1,3 +1,10 @@
+##2017-02-08 - Release 0.6.1
+###Summary
+- New parameters
+  - rsync::server::module
+    - `$pre_xfer_exec`
+    - `$post_xfer_exec`
+
 ##2017-01-05 - Release 0.6.0
 ###Summary
 Force array type for array params of rsync::server::module. 
