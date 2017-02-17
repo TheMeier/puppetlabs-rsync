@@ -121,6 +121,7 @@ sets up a rsync server
 To disable default values for ``incoming_chmod`` and ``outgoing_chmod``, and
 do not add empty values to the resulting config, set both values to ``false``
 
+    include rsync::server
     rsync::server::module { 'repo':
       path           => $base,
       incoming_chmod => false,
