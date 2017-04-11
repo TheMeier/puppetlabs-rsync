@@ -18,6 +18,7 @@ describe 'rsync::server', :type => :class do
       })
       is_expected.to contain_concat__fragment('rsyncd_conf_header').with_content(/^use chroot\s*=\s*yes$/)
       is_expected.to contain_concat__fragment('rsyncd_conf_header').with_content(/^address\s*=\s*0.0.0.0$/)
+      is_expected.to contain_concat__fragment('rsyncd_conf_header').with_content(/^syslog facility\s*=\s*local3$/)
     }
   end
 

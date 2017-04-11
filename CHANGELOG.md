@@ -1,7 +1,7 @@
-##2017-02-08 - Release 0.6.2
+##UNRELEASED - Release 0.6.2
 ###Summary
 - Set conffile and service name for FreeBSD, https://github.com/puppetlabs/puppetlabs-rsync/pull/87
-
+- New paramter to set syslog facility
 
 ##2017-02-08 - Release 0.6.1
 ###Summary
