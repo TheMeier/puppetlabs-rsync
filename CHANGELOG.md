@@ -1,3 +1,7 @@
+##2017-05-11 - Release 0.6.3
+###Summary
+- New paramter to set sue chroot
+
 ##2017-04-13 - Release 0.6.2
 ###Summary
 - Set conffile and service name for FreeBSD, https://github.com/puppetlabs/puppetlabs-rsync/pull/87
