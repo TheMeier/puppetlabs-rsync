@@ -7,6 +7,7 @@
 #   $comment          - rsync comment
 #   $read_only        - yes||no, defaults to yes
 #   $write_only       - yes||no, defaults to no
+#   $use_chroot       - yes|no, defaults to undef
 #   $list             - yes||no, defaults to yes
 #   $uid              - uid of rsync server, defaults to 0
 #   $gid              - gid of rsync server, defaults to 0
@@ -52,6 +53,7 @@ define rsync::server::module (
   $outgoing_chmod                     = '0644',
   $max_connections                    = '0',
   $lock_file                          = '/var/run/rsyncd.lock',
+  $use_chroot                         = undef,
   $secrets_file                       = undef,
   Optional[Array] $exclude            = undef,
   Optional[Array] $auth_users         = undef,
@@ -73,6 +75,7 @@ define rsync::server::module (
       'comment'            => $comment,
       'read_only'          => $read_only,
       'write_only'         => $write_only,
+      'use_chroot'         => $use_chroot,
       'list'               => $list,
       'uid'                => $uid,
       'gid'                => $gid,

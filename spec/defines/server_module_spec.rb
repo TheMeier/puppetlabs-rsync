@@ -49,6 +49,7 @@ describe 'rsync::server::module', :type => :define do
     it { is_expected.not_to contain_concat__fragment(fragment_name).with_content(/^refuse options\s*=.*$/) }
     it { is_expected.not_to contain_concat__fragment(fragment_name).with_content(/^pre-xfer exec\s*=.*$/) }
     it { is_expected.not_to contain_concat__fragment(fragment_name).with_content(/^post-xfer exec\s*=.*$/) }
+    it { is_expected.not_to contain_concat__fragment(fragment_name).with_content(/^use chroot\s*=.*$/) }
   end
 
   describe "when overriding max connections" do
@@ -120,5 +121,12 @@ describe 'rsync::server::module', :type => :define do
       mandatory_params.merge({ :log_file => '/var/log/rsync.log' })
     end
     it { is_expected.to contain_concat__fragment(fragment_name).with_content(/^log file\s*=\s*\/var\/log\/rsync.log$/)}
+  end
+
+  describe "when overriding use_chroot" do
+    let :params do
+      mandatory_params.merge({ :use_chroot => 'yes' })
+    end
+    it { is_expected.to contain_concat__fragment(fragment_name).with_content(/^use chroot\s*=\s*yes$/)}
   end
 end
