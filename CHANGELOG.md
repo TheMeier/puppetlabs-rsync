@@ -2,6 +2,12 @@
 ### Summary
 - add exclude_first parameter for rsync::get and rsync::put
 - add logfile parameter to rsync::get
+- use data types for all parameters
+  this is a preparation for add puppet strings documentation
+
+The next major release wil make all booleans strictly boolean module
+parameters, getting rid of Variant[Boolean,Enum['yes','no','1','0']]
+
 
 ##2017-07-01 - Release 0.6.4
 ###Summary
