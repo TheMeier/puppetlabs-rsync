@@ -42,32 +42,32 @@
 #   }
 #
 define rsync::server::module (
-  $path,
-  $order                                      = "10_${name}",
-  $comment                                    = undef,
-  $read_only                                  = 'yes',
-  $write_only                                 = 'no',
-  $list                                       = 'yes',
-  $uid                                        = '0',
-  $gid                                        = '0',
-  $incoming_chmod                             = '0644',
-  $outgoing_chmod                             = '0644',
-  $max_connections                            = '0',
-  $lock_file                                  = '/var/run/rsyncd.lock',
-  $use_chroot                                 = undef,
-  $secrets_file                               = undef,
-  Optional[Array] $exclude                    = undef,
-  Optional[Array] $auth_users                 = undef,
-  Optional[Array] $hosts_allow                = undef,
-  Optional[Array] $hosts_deny                 = undef,
-  Optional[String] $pre_xfer_exec             = undef,
-  Optional[String] $post_xfer_exec            = undef,
-  $transfer_logging                           = undef,
-  $log_format                                 = undef,
-  Optional[Array] $refuse_options             = undef,
-  $ignore_nonreadable                         = undef,
-  $log_file                                   = undef,
-  Optional[Array[String]] $dont_compress      = undef)  {
+  String                                    $path,
+  String                                    $order              = "10_${name}",
+  Optional[String]                          $comment            = undef,
+  Variant[Boolean,Enum['yes','no','1','0']] $read_only          = true,
+  Variant[Boolean,Enum['yes','no','1','0']] $write_only         = false,
+  Variant[Boolean,Enum['yes','no','1','0']] $list               = true,
+  String                                    $uid                = '0',
+  String                                    $gid                = '0',
+  Variant[Boolean,String]                   $incoming_chmod     = '0644',
+  Variant[Boolean,String]                   $outgoing_chmod     = '0644',
+  Variant[Integer,String]                   $max_connections    = '0', # string variant for compatibility
+  String                                    $lock_file          = '/var/run/rsyncd.lock',
+  Variant[Boolean,Enum['yes','no','1','0']] $use_chroot         = true, # was not set before wich defaults to true
+  Optional[String]                          $secrets_file       = undef,
+  Optional[Array]                           $exclude            = undef,
+  Optional[Array]                           $auth_users         = undef,
+  Optional[Array]                           $hosts_allow        = undef,
+  Optional[Array]                           $hosts_deny         = undef,
+  Optional[String]                          $pre_xfer_exec      = undef,
+  Optional[String]                          $post_xfer_exec     = undef,
+  Variant[Boolean,Enum['yes','no','1','0']] $transfer_logging   = false,
+  Optional[String]                          $log_format         = undef,
+  Optional[Array]                           $refuse_options     = undef,
+  Variant[Boolean,Enum['yes','no','1','0']] $ignore_nonreadable = false,
+  Optional[String]                          $log_file           = undef,
+  Optional[Array[String]]                   $dont_compress      = undef)  {
 
   concat::fragment { "frag-${name}":
     content => epp('rsync/module.epp',{

@@ -7,15 +7,15 @@
 #   class rsync
 #
 class rsync::server(
-  Boolean $use_xinetd                                        = true,
-  String  $address                                           = '0.0.0.0',
-  String  $motd_file                                         = 'UNSET',
+  Boolean                                   $use_xinetd      = true,
+  String                                    $address         = '0.0.0.0',
+  String                                    $motd_file       = 'UNSET',
   Variant[Boolean,Enum['yes','no','1','0']] $use_chroot      = true,
-  String  $uid                                               = 'nobody',
-  String  $gid                                               = 'nobody',
-  String  $port                                              = '873',
-  Hash    $modules                                           = {},
-  String  $syslog_facility                                   = 'local3',
+  String                                    $uid             = 'nobody',
+  String                                    $gid             = 'nobody',
+  String                                    $port            = '873',
+  Hash                                      $modules         = {},
+  String                                    $syslog_facility = 'local3',
 ) inherits rsync {
 
   $conf_file = $::osfamily ? {

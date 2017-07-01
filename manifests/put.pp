@@ -27,16 +27,16 @@
 #  } # rsync
 #
 define rsync::put (
-  $source,
-  $path          = undef,
-  $user          = undef,
-  $purge         = undef,
-  $exclude       = undef,
-  $include       = undef,
-  $exclude_first = true,
-  $keyfile       = undef,
-  $timeout       = '900',
-  $options       = '-a'
+  String $source,
+  Optional[String] $path                            = undef,
+  Optional[String] $user                            = undef,
+  Boolean $purge                                    = false,
+  Optional[Variant[Array[String],String]] $exclude  = undef,
+  Optional[Variant[Array[String],String]] $include  = undef,
+  Boolean $exclude_first                            = true,
+  Optional[String] $keyfile                         = undef,
+  String $timeout                                   = '900',
+  String $options                                   = '-a'
 ) {
 
   if $keyfile {

@@ -31,14 +31,15 @@ describe 'rsync::server::module', :type => :define do
   describe "when using default class paramaters" do
     it { is_expected.to contain_concat__fragment(fragment_name).with_content(/^\[ foobar \]$/) }
     it { is_expected.to contain_concat__fragment(fragment_name).with_content(/^path\s*=\s*\/some\/path$/) }
-    it { is_expected.to contain_concat__fragment(fragment_name).with_content(/^read only\s*=\s*yes$/) }
-    it { is_expected.to contain_concat__fragment(fragment_name).with_content(/^write only\s*=\s*no$/) }
-    it { is_expected.to contain_concat__fragment(fragment_name).with_content(/^list\s*=\s*yes$/) }
+    it { is_expected.to contain_concat__fragment(fragment_name).with_content(/^read only\s*=\s*true$/) }
+    it { is_expected.to contain_concat__fragment(fragment_name).with_content(/^write only\s*=\s*false$/) }
+    it { is_expected.to contain_concat__fragment(fragment_name).with_content(/^list\s*=\s*true$/) }
     it { is_expected.to contain_concat__fragment(fragment_name).with_content(/^uid\s*=\s*0$/) }
     it { is_expected.to contain_concat__fragment(fragment_name).with_content(/^gid\s*=\s*0$/) }
     it { is_expected.to contain_concat__fragment(fragment_name).with_content(/^incoming chmod\s*=\s*0644$/) }
     it { is_expected.to contain_concat__fragment(fragment_name).with_content(/^outgoing chmod\s*=\s*0644$/) }
     it { is_expected.to contain_concat__fragment(fragment_name).with_content(/^max connections\s*=\s*0$/) }
+    it { is_expected.to contain_concat__fragment(fragment_name).with_content(/^use chroot\s*=\s*true*$/) }
     it { is_expected.not_to contain_concat__fragment(fragment_name).with_content(/^lock file\s*=.*$/) }
     it { is_expected.not_to contain_concat__fragment(fragment_name).with_content(/^secrets file\s*=.*$/) }
     it { is_expected.not_to contain_concat__fragment(fragment_name).with_content(/^auth users\s*=.*$/) }
@@ -49,7 +50,6 @@ describe 'rsync::server::module', :type => :define do
     it { is_expected.not_to contain_concat__fragment(fragment_name).with_content(/^refuse options\s*=.*$/) }
     it { is_expected.not_to contain_concat__fragment(fragment_name).with_content(/^pre-xfer exec\s*=.*$/) }
     it { is_expected.not_to contain_concat__fragment(fragment_name).with_content(/^post-xfer exec\s*=.*$/) }
-    it { is_expected.not_to contain_concat__fragment(fragment_name).with_content(/^use chroot\s*=.*$/) }
     it { is_expected.not_to contain_concat__fragment(fragment_name).with_content(/^dont compress\s*=.*$/) }
   end
 
@@ -97,7 +97,7 @@ describe 'rsync::server::module', :type => :define do
     :secrets_file       => '/path/to/secrets',
     :hosts_allow        => ['localhost', '169.254.42.51'],
     :hosts_deny         => ['some-host.example.com', '10.0.0.128'],
-    :transfer_logging   => 'true',
+    :transfer_logging   => true,
     :log_format         => '%t %a %m %f %b',
     :refuse_options     => ['c', 'delete'],
     :ignore_nonreadable => 'yes',
