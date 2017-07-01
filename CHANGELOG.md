@@ -1,6 +1,10 @@
+##2017-07-01 - Release 0.6.4
+###Summary
+- New paramter to set dont compress
+
 ##2017-05-11 - Release 0.6.3
 ###Summary
-- New paramter to set sue chroot
+- New paramter to set uee chroot
 
 ##2017-04-13 - Release 0.6.2
 ###Summary
