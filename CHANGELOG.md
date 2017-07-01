@@ -1,3 +1,8 @@
+##YYYY-MM-DD - Unreleased
+### Summary
+- add exclude_first parameter for rsync::get and rsync::put
+- add logfile parameter to rsync::get
+
 ##2017-07-01 - Release 0.6.4
 ###Summary
 - New paramter to set dont compress
