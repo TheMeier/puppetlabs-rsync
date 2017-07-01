@@ -33,6 +33,8 @@ ruby_version_segments = Gem::Version.new(RUBY_VERSION.dup).segments
 minor_version = "#{ruby_version_segments[0]}.#{ruby_version_segments[1]}"
 
 group :development do
+  gem "puppet-strings",                                :require => false, :platforms => "ruby"
+  gem "rspec-puppet-facts",                            :require => false, :platforms => "ruby"
   gem "puppet-module-posix-default-r#{minor_version}", :require => false, :platforms => "ruby"
   gem "puppet-module-win-default-r#{minor_version}",   :require => false, :platforms => ["mswin", "mingw", "x64_mingw"]
   gem "puppet-module-posix-dev-r#{minor_version}",     :require => false, :platforms => "ruby"
