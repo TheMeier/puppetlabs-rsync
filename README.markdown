@@ -85,7 +85,6 @@ sets up a rsync server
 ## Parameters: ##
     $path               - path to data
     $comment            - rsync comment
-    $motd               - file containing motd info
     $read_only          - yes||no, defaults to yes
     $write_only         - yes||no, defaults to no
     $list               - yes||no, defaults to no

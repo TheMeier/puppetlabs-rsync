@@ -16,7 +16,7 @@ describe 'rsync::server', :type => :class do
       is_expected.to contain_concat__fragment('rsyncd_conf_header').with({
         :order => '00_header',
       })
-      is_expected.to contain_concat__fragment('rsyncd_conf_header').with_content(/^use chroot\s*=\s*yes$/)
+      is_expected.to contain_concat__fragment('rsyncd_conf_header').with_content(/^use chroot\s*=\s*true$/)
       is_expected.to contain_concat__fragment('rsyncd_conf_header').with_content(/^address\s*=\s*0.0.0.0$/)
       is_expected.to contain_concat__fragment('rsyncd_conf_header').with_content(/^syslog facility\s*=\s*local3$/)
     }
@@ -36,11 +36,12 @@ describe 'rsync::server', :type => :class do
 
   describe 'when setting an motd' do
     let :params do
-      { :motd_file => true }
+      { :motd_file => '/some/file' }
     end
 
     it {
-      is_expected.to contain_file('/etc/rsync-motd')
+      is_expected.to contain_file('/some/file')
+      is_expected.to contain_concat__fragment('rsyncd_conf_header').with_content(/^motd file\s*=\s*\/some\/file$/)
     }
   end
 

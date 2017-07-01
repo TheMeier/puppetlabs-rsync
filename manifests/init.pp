@@ -3,10 +3,10 @@
 # This module manages rsync
 #
 class rsync(
-  $package_ensure    = 'installed',
-  $manage_package    = true,
-  $puts              = {},
-  $gets              = {},
+  String  $package_ensure    = 'installed',
+  Boolean $manage_package    = true,
+  Hash    $puts              = {},
+  Hash    $gets              = {},
 ) {
 
   if $manage_package {

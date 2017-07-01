@@ -7,15 +7,15 @@
 #   class rsync
 #
 class rsync::server(
-  $use_xinetd      = true,
-  $address         = '0.0.0.0',
-  $motd_file       = 'UNSET',
-  $use_chroot      = 'yes',
-  $uid             = 'nobody',
-  $gid             = 'nobody',
-  $port            = '873',
-  $modules         = {},
-  $syslog_facility = 'local3',
+  Boolean $use_xinetd                                        = true,
+  String  $address                                           = '0.0.0.0',
+  String  $motd_file                                         = 'UNSET',
+  Variant[Boolean,Enum['yes','no','1','0']] $use_chroot      = true,
+  String  $uid                                               = 'nobody',
+  String  $gid                                               = 'nobody',
+  String  $port                                              = '873',
+  Hash    $modules                                           = {},
+  String  $syslog_facility                                   = 'local3',
 ) inherits rsync {
 
   $conf_file = $::osfamily ? {
@@ -59,7 +59,7 @@ class rsync::server(
   }
 
   if $motd_file != 'UNSET' {
-    file { '/etc/rsync-motd':
+    file { $motd_file:
       source => 'puppet:///modules/rsync/motd',
     }
   }
