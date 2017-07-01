@@ -60,3 +60,6 @@ pre-xfer exec      = <%= $pre_xfer_exec %>
 <% if $post_xfer_exec { -%>
 post-xfer exec     = <%= $post_xfer_exec %>
 <% } -%>
+<% if $dont_compress { -%>
+dont compress      = <%= $dont_compress.join(' ')%>
+<% } -%>

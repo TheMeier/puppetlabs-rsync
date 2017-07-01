@@ -104,6 +104,7 @@ sets up a rsync server
     $ignore_nonreadable - This  tells  the  rsync daemon to completely ignore files that are not readable by the user.
     $pre_xfer_exec      - command to be run before the transfer
     $post_xfer_exec     - command to be run before the transfer
+    $dont_compress      - wildcard patterns that should not be compressed when pulling files from the daemon (man 5 rsyncd.conf for details, must be undef or an array)
 
 ## Actions: ##
   sets up an rsync server

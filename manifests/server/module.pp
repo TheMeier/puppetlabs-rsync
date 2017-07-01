@@ -27,6 +27,7 @@
 #    rsyncd.conf documentation for more details.
 #   $refuse_options   - list of rsync command line options that will be refused by your rsync daemon.
 #   $log_file         - log messages to the indicated file rather than using syslog
+#   $dont_compress    - wildcard patterns that should not be compressed when pulling files from the daemon
 #
 #   sets up an rsync server
 #
@@ -42,30 +43,31 @@
 #
 define rsync::server::module (
   $path,
-  $order                              = "10_${name}",
-  $comment                            = undef,
-  $read_only                          = 'yes',
-  $write_only                         = 'no',
-  $list                               = 'yes',
-  $uid                                = '0',
-  $gid                                = '0',
-  $incoming_chmod                     = '0644',
-  $outgoing_chmod                     = '0644',
-  $max_connections                    = '0',
-  $lock_file                          = '/var/run/rsyncd.lock',
-  $use_chroot                         = undef,
-  $secrets_file                       = undef,
-  Optional[Array] $exclude            = undef,
-  Optional[Array] $auth_users         = undef,
-  Optional[Array] $hosts_allow        = undef,
-  Optional[Array] $hosts_deny         = undef,
-  Optional[String] $pre_xfer_exec     = undef,
-  Optional[String] $post_xfer_exec    = undef,
-  $transfer_logging                   = undef,
-  $log_format                         = undef,
-  Optional[Array] $refuse_options     = undef,
-  $ignore_nonreadable                 = undef,
-  $log_file                           = undef)  {
+  $order                                      = "10_${name}",
+  $comment                                    = undef,
+  $read_only                                  = 'yes',
+  $write_only                                 = 'no',
+  $list                                       = 'yes',
+  $uid                                        = '0',
+  $gid                                        = '0',
+  $incoming_chmod                             = '0644',
+  $outgoing_chmod                             = '0644',
+  $max_connections                            = '0',
+  $lock_file                                  = '/var/run/rsyncd.lock',
+  $use_chroot                                 = undef,
+  $secrets_file                               = undef,
+  Optional[Array] $exclude                    = undef,
+  Optional[Array] $auth_users                 = undef,
+  Optional[Array] $hosts_allow                = undef,
+  Optional[Array] $hosts_deny                 = undef,
+  Optional[String] $pre_xfer_exec             = undef,
+  Optional[String] $post_xfer_exec            = undef,
+  $transfer_logging                           = undef,
+  $log_format                                 = undef,
+  Optional[Array] $refuse_options             = undef,
+  $ignore_nonreadable                         = undef,
+  $log_file                                   = undef,
+  Optional[Array[String]] $dont_compress      = undef)  {
 
   concat::fragment { "frag-${name}":
     content => epp('rsync/module.epp',{
@@ -95,6 +97,7 @@ define rsync::server::module (
       'log_file'           => $log_file,
       'pre_xfer_exec'      => $pre_xfer_exec,
       'post_xfer_exec'     => $post_xfer_exec,
+      'dont_compress'      => $dont_compress,
     }),
     target  => $rsync::server::conf_file,
     order   => $order,

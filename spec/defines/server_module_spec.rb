@@ -50,6 +50,7 @@ describe 'rsync::server::module', :type => :define do
     it { is_expected.not_to contain_concat__fragment(fragment_name).with_content(/^pre-xfer exec\s*=.*$/) }
     it { is_expected.not_to contain_concat__fragment(fragment_name).with_content(/^post-xfer exec\s*=.*$/) }
     it { is_expected.not_to contain_concat__fragment(fragment_name).with_content(/^use chroot\s*=.*$/) }
+    it { is_expected.not_to contain_concat__fragment(fragment_name).with_content(/^dont compress\s*=.*$/) }
   end
 
   describe "when overriding max connections" do
@@ -128,5 +129,12 @@ describe 'rsync::server::module', :type => :define do
       mandatory_params.merge({ :use_chroot => 'yes' })
     end
     it { is_expected.to contain_concat__fragment(fragment_name).with_content(/^use chroot\s*=\s*yes$/)}
+  end
+
+  describe "when overriding dont_compress" do
+    let :params do
+      mandatory_params.merge({ :dont_compress => ['foo', '/bar', 'foo/bar.*'] })
+    end
+    it { is_expected.to contain_concat__fragment(fragment_name).with_content(/^dont compress\s*=\s*foo \/bar foo\/bar.*$/)}
   end
 end
