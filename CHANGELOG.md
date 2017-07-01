@@ -2,6 +2,8 @@
 ### Summary
 - add exclude_first parameter for rsync::get and rsync::put
 - add logfile parameter to rsync::get
+- use puppet-rspec-facts for tests
+- replace legacy facts with new $facts hash
 - use data types for all parameters
   this is a preparation for add puppet strings documentation
 
