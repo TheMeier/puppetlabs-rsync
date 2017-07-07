@@ -1,15 +1,13 @@
-##YYYY-MM-DD - Unreleased
+##2017-07-07 - Release 0.7.0
+
+[Full Changelog](https://github.com/TheMeier/puppetlabs-rsync/compare/v0.6.3...v0.7.0)
+
 ### Summary
 - add exclude_first parameter for rsync::get and rsync::put
 - add logfile parameter to rsync::get
 - use puppet-rspec-facts for tests
 - replace legacy facts with new $facts hash
 - use data types for all parameters
-  this is a preparation for add puppet strings documentation
-
-The next major release wil make all booleans strictly boolean module
-parameters, getting rid of Variant[Boolean,Enum['yes','no','1','0']]
-
 
 ##2017-07-01 - Release 0.6.4
 ###Summary
