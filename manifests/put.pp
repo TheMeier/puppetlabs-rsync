@@ -1,84 +1,31 @@
-# Definition: rsync::put
-#
-# put files via rsync
-#
-# Parameters:
-#   $source        - source to copy from
-#   $path          - path to copy to, defaults to $name
-#   $user          - username on remote system
-#   $purge         - if set, rsync will use '--delete'
-#   $exlude        - string (or array) to be excluded
-#   $include       - string (or array) to be included
-#   $exclude_first - if 'true' then first exclude and then include; the other way around if 'false'
-#   $keyfile       - path to ssh key used to connect to remote host, defaults to /home/${user}/.ssh/id_rsa
-#   $timeout       - timeout in seconds, defaults to 900
-#
-# Actions:
-#   put files via rsync
-#
-# Requires:
-#   $source must be set
-#
-# Sample Usage:
-#
-#  rsync::put { '${rsyncDestHost}:/repo/foo':
-#    user    => 'user',
-#    source  => "/repo/foo/",
-#  } # rsync
-#
+# rsync::put
+# @summary put files via rsync ussing exec
+# @param source source to copy from
+# @param path path to copy to
+# @param user username on remote system
+# @param keyfile path to ssh key used to connect to remote host
+# @param timeout timeout in seconds
+# @param options commandline options to pass to rsync (-a)
+# @example
+#   rsync::put { '${rsyncDestHost}:/repo/foo':
+#     user    => 'user',
+#     source  => "/repo/foo/",
+#   }
 define rsync::put (
-  String $source,
-  Optional[String] $path                            = undef,
-  Optional[String] $user                            = undef,
-  Boolean $purge                                    = false,
-  Optional[Variant[Array[String],String]] $exclude  = undef,
-  Optional[Variant[Array[String],String]] $include  = undef,
-  Boolean $exclude_first                            = true,
-  Optional[String] $keyfile                         = undef,
-  String $timeout                                   = '900',
-  String $options                                   = '-a'
+  String           $source,
+  Optional[String] $path    = undef,
+  Optional[String] $user    = undef,
+  String           $keyfile = "/home/${user}/.ssh/id_rsa",
+  String           $timeout = '900',
+  String           $options = '-a'
 ) {
 
-  if $keyfile {
-    $mykeyfile = $keyfile
-  } else {
-    $mykeyfile = "/home/${user}/.ssh/id_rsa"
-  }
-
   if $user {
-    $myuseropt = "-e 'ssh -i ${mykeyfile} -l ${user}'"
+    $myuseropt = "-e 'ssh -i ${keyfile} -l ${user}'"
     $myuser = "${user}@"
   } else {
     $myuseropt = undef
     $myuser = undef
-  }
-
-  if $purge {
-    $mypurge = '--delete'
-  } else {
-    $mypurge = undef
-  }
-
-  if $exclude {
-    $myexclude = join(prefix(flatten([$exclude]), '--exclude='), ' ')
-  } else {
-    $myexclude = undef
-  }
-
-  if $include {
-    $myinclude = join(prefix(flatten([$include]), '--include='), ' ')
-  } else {
-    $myinclude = undef
-  }
-
-  if $include or $exclude {
-    if $exclude_first {
-      $excludeandinclude = join(delete_undef_values([$myexclude, $myinclude]), ' ')
-    } else {
-      $excludeandinclude = join(delete_undef_values([$myinclude, $myexclude]), ' ')
-    }
-  } else {
-    $excludeandinclude = undef
   }
 
   if $path {
@@ -88,7 +35,7 @@ define rsync::put (
   }
 
   $rsync_options = join(
-    delete_undef_values([$options, $mypurge, $excludeandinclude, $myuseropt, $source, "${myuser}${mypath}"]), ' ')
+    delete_undef_values([$options, $myuseropt, $source, "${myuser}${mypath}"]), ' ')
 
   exec { "rsync ${name}":
     command => "rsync -q ${rsync_options}",
