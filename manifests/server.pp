@@ -9,7 +9,6 @@
 class rsync::server(
   Boolean                                   $use_xinetd      = true,
   String                                    $address         = '0.0.0.0',
-  String                                    $motd_file       = 'UNSET',
   Variant[Boolean,Enum['yes','no','1','0']] $use_chroot      = true,
   String                                    $uid             = 'nobody',
   String                                    $gid             = 'nobody',
@@ -67,18 +66,11 @@ class rsync::server(
     }
   }
 
-  if $motd_file != 'UNSET' {
-    file { $motd_file:
-      source => 'puppet:///modules/rsync/motd',
-    }
-  }
-
   concat { $conf_file: }
 
   # Template uses:
   # - $use_chroot
   # - $address
-  # - $motd_file
   concat::fragment { 'rsyncd_conf_header':
     target  => $conf_file,
     content => epp('rsync/header.epp'),

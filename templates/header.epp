@@ -10,6 +10,3 @@ syslog facility = <%= $rsync::server::syslog_facility %>
 timeout = 300
 address = <%= $rsync::server::address %>
 port = <%= $rsync::server::port %>
-<% if $rsync::server::motd_file != 'UNSET' { -%>
-motd file = <%= $rsync::server::motd_file %>
-<% } -%>

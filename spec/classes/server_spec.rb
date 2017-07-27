@@ -11,7 +11,6 @@ describe 'rsync::server', :type => :class do
           is_expected.to contain_class('xinetd')
           is_expected.to contain_xinetd__service('rsync').with({ 'bind' => '0.0.0.0' })
           is_expected.not_to contain_service('rsync')
-          is_expected.not_to contain_file('/etc/rsync-motd')
           is_expected.to contain_concat__fragment('rsyncd_conf_header').with({
             :order => '00_header',
           })
@@ -37,17 +36,6 @@ describe 'rsync::server', :type => :class do
             'rsync'
           end
           it { is_expected.to contain_service(servicename) }
-      end
-
-      describe 'when setting an motd' do
-        let :params do
-          { :motd_file => '/some/file' }
-        end
-
-        it {
-          is_expected.to contain_file('/some/file')
-          is_expected.to contain_concat__fragment('rsyncd_conf_header').with_content(/^motd file\s*=\s*\/some\/file$/)
-        }
       end
 
       describe 'when overriding use_chroot' do
