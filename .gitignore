@@ -3,3 +3,5 @@ Gemfile.lock
 .rspec
 spec/fixtures/manifests
 spec/fixtures/modules
+doc/
+.yardoc

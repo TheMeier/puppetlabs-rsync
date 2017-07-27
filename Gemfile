@@ -34,6 +34,7 @@ minor_version = "#{ruby_version_segments[0]}.#{ruby_version_segments[1]}"
 
 group :development do
   gem "puppet-strings",                                :require => false, :platforms => "ruby"
+  gem "redcarpet",                                     :require => false, :platforms => "ruby"
   gem "rspec-puppet-facts",                            :require => false, :platforms => "ruby"
   gem "puppet-module-posix-default-r#{minor_version}", :require => false, :platforms => "ruby"
   gem "puppet-module-win-default-r#{minor_version}",   :require => false, :platforms => ["mswin", "mingw", "x64_mingw"]
