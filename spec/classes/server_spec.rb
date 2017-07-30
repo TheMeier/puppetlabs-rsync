@@ -40,11 +40,11 @@ describe 'rsync::server', :type => :class do
 
       describe 'when overriding use_chroot' do
         let :params do
-          { :use_chroot => 'no' }
+          { :use_chroot => false }
         end
 
         it {
-          is_expected.to contain_concat__fragment('rsyncd_conf_header').with_content(/^use chroot\s*=\s*no$/)
+          is_expected.to contain_concat__fragment('rsyncd_conf_header').with_content(/^use chroot\s*=\s*false$/)
         }
       end
 

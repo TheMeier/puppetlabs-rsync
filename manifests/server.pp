@@ -1,20 +1,22 @@
-# Class: rsync::server
-#
-# The rsync server. Supports both standard rsync as well as rsync over ssh
-#
-# Requires:
-#   class xinetd if use_xinetd is set to true
-#   class rsync
-#
+# rsync::server
+# @summary The rsync server. Supports both standard rsync as well as rsync over ssh
+# @param use_xinetd wether to run in xinetd or standaloie
+# @param address adress to listen to
+# @param use_chroot witch for rsync config option "use chrot"
+# @param uid uid to run the deamon as
+# @param gid gid to run the deamon as
+# @param port tcp port to listen to
+# @param modules hash of rsync::server::module resources to create
+# @param syslog_facility syslog facitlity to set for logging
 class rsync::server(
-  Boolean                                   $use_xinetd      = true,
-  String                                    $address         = '0.0.0.0',
-  Variant[Boolean,Enum['yes','no','1','0']] $use_chroot      = true,
-  String                                    $uid             = 'nobody',
-  String                                    $gid             = 'nobody',
-  String                                    $port            = '873',
-  Hash                                      $modules         = {},
-  String                                    $syslog_facility = 'local3',
+  Boolean $use_xinetd      = true,
+  String  $address         = '0.0.0.0',
+  Boolean $use_chroot      = true,
+  String  $uid             = 'nobody',
+  String  $gid             = 'nobody',
+  String  $port            = '873',
+  Hash    $modules         = {},
+  String  $syslog_facility = 'local3',
 ) inherits rsync {
 
   case $facts['os']['family'] {
@@ -68,9 +70,6 @@ class rsync::server(
 
   concat { $conf_file: }
 
-  # Template uses:
-  # - $use_chroot
-  # - $address
   concat::fragment { 'rsyncd_conf_header':
     target  => $conf_file,
     content => epp('rsync/header.epp'),
