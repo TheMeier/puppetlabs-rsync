@@ -10,8 +10,7 @@ Major release. Code cleanup and documentation.
 The documentation is published on https://themeier.github.io/puppetlabs-rsync/
 
 **Breaking changes**
-- All parameters to rsync::get and rsync::put wich are simple wrappers for rsync command-line switches habe been removed! It doesn't make sence to hab a parameter for each rsync commadn line switch
-instead build your own command line option string and pass it to the $options parameter. The Following paramters were removed:
+- All parameters to rsync::get and rsync::put wich are simple wrappers for rsync command-line switches have been removed! It's not very useful to have a parameter for each rsync command line switch. Instead put your desired command line options in a string and pass it to the $options parameter. The Following paramters were removed:
   - rsync::get
     - $purge
     - $recursive
@@ -33,7 +32,7 @@ instead build your own command line option string and pass it to the $options pa
     - $exclude_first
     - $keyfile
 
-- All yes/no on/off 1/0 true/false paramters hav been converted to boolean paramters. This changes the following parameters
+- All yes/no on/off 1/0 true/false paramters have been converted to boolean paramters. This changes the following parameters
   - rsync::server
     - use_chroot
   - rsync::server::module
