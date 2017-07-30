@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe 'rsync::server::module', :type => :define do
-  on_supported_os.each do |os, facts| 
+  on_supported_os.each do |os, facts|
     context "on #{os}" do
-      let(:facts) do 
+      let(:facts) do
         facts
       end
 
@@ -86,9 +86,9 @@ describe 'rsync::server::module', :type => :define do
 
       {
         :comment            => 'super module !',
-        :read_only          => 'no',
-        :write_only         => 'yes',
-        :list               => 'no',
+        :read_only          => false,
+        :write_only         => true,
+        :list               => false,
         :uid                => '4682',
         :gid                => '4682',
         :incoming_chmod     => '0777',
@@ -99,7 +99,7 @@ describe 'rsync::server::module', :type => :define do
         :transfer_logging   => true,
         :log_format         => '%t %a %m %f %b',
         :refuse_options     => ['c', 'delete'],
-        :ignore_nonreadable => 'yes',
+        :ignore_nonreadable => true,
       }.each do |k,v|
         describe "when overriding #{k}" do
           let :params do
@@ -125,9 +125,9 @@ describe 'rsync::server::module', :type => :define do
 
       describe "when overriding use_chroot" do
         let :params do
-          mandatory_params.merge({ :use_chroot => 'yes' })
+          mandatory_params.merge({ :use_chroot => true })
         end
-        it { is_expected.to contain_concat__fragment(fragment_name).with_content(/^use chroot\s*=\s*yes$/)}
+        it { is_expected.to contain_concat__fragment(fragment_name).with_content(/^use chroot\s*=\s*true$/)}
       end
 
       describe "when overriding dont_compress" do
