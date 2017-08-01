@@ -43,6 +43,8 @@ The documentation is published on https://themeier.github.io/puppetlabs-rsync/
     - transfer_logging
     - ignore_nonreadable
 
+- motd file functionallity was removed
+- rsync::repo was removed
 
 ##2017-07-07 - Release 0.7.0
 
