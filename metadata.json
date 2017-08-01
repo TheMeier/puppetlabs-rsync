@@ -1,6 +1,6 @@
 {
   "name": "themeier-rsync",
-  "version": "0.7.1",
+  "version": "1.0.0",
   "author": "Christoph Maser",
   "summary": "Manages rsync clients, repositories, and servers, & providies defines to easily grab data via rsync.",
   "license": "Apache-2.0",
