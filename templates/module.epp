@@ -8,6 +8,7 @@ write only         = <%= $write_only %>
 list               = <%= $list %>
 uid                = <%= $uid %>
 gid                = <%= $gid %>
+reverse lookup     = <%= $reverse_lookup %>
 <% if $use_chroot { -%>
 use chroot         = <%= $use_chroot %>
 <% } -%>

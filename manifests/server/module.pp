@@ -25,9 +25,10 @@
 # @param dont_compress wildcard patterns that should not be compressed when pulling files from the daemon
 # @param order concat::fragment order
 # @param exclude space-separated list of daemon exclude patterns.
-# @param pre_xfer_exec  command to be run before and/or after the transfer.
-# @param post_xfer_exec  command to be run before and/or after the transfer.
+# @param pre_xfer_exec command to be run before and/or after the transfer.
+# @param post_xfer_exec command to be run before and/or after the transfer.
 # @param ignore_nonreadable
+# @param reverse_lookup Controls whether the daemon performs a reverse lookup on the client’s IP address to determine its hostname, which is used for "hosts allow"/"hosts deny" checks and the "%h" log escape.
 # @example
 #   rsync::server::module { 'repo':
 #     path    => $base,
@@ -59,7 +60,8 @@ define rsync::server::module (
   Optional[Array]          $refuse_options     = undef,
   Boolean                  $ignore_nonreadable = false,
   Optional[String]         $log_file           = undef,
-  Optional[Array[String]]  $dont_compress      = undef)  {
+  Optional[Array[String]]  $dont_compress      = undef,
+  Boolean                  $reverse_lookup     = true,)  {
 
   concat::fragment { "frag-${name}":
     content => epp('rsync/module.epp',{
@@ -90,6 +92,7 @@ define rsync::server::module (
       'pre_xfer_exec'      => $pre_xfer_exec,
       'post_xfer_exec'     => $post_xfer_exec,
       'dont_compress'      => $dont_compress,
+      'reverse_lookup'     => $reverse_lookup,
     }),
     target  => $rsync::server::conf_file,
     order   => $order,

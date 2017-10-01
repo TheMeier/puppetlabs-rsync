@@ -39,6 +39,7 @@ describe 'rsync::server::module', :type => :define do
         it { is_expected.to contain_concat__fragment(fragment_name).with_content(/^outgoing chmod\s*=\s*0644$/) }
         it { is_expected.to contain_concat__fragment(fragment_name).with_content(/^max connections\s*=\s*0$/) }
         it { is_expected.to contain_concat__fragment(fragment_name).with_content(/^use chroot\s*=\s*true*$/) }
+        it { is_expected.to contain_concat__fragment(fragment_name).with_content(/^reverse lookup\s*=\s*true*$/) }
         it { is_expected.not_to contain_concat__fragment(fragment_name).with_content(/^lock file\s*=.*$/) }
         it { is_expected.not_to contain_concat__fragment(fragment_name).with_content(/^secrets file\s*=.*$/) }
         it { is_expected.not_to contain_concat__fragment(fragment_name).with_content(/^auth users\s*=.*$/) }
@@ -128,6 +129,13 @@ describe 'rsync::server::module', :type => :define do
           mandatory_params.merge({ :use_chroot => true })
         end
         it { is_expected.to contain_concat__fragment(fragment_name).with_content(/^use chroot\s*=\s*true$/)}
+      end
+
+      describe "when overriding reverse_lookup" do
+        let :params do
+          mandatory_params.merge({ :reverse_lookup => false })
+        end
+        it { is_expected.to contain_concat__fragment(fragment_name).with_content(/^reverse lookup\s*=\s*false$/)}
       end
 
       describe "when overriding dont_compress" do

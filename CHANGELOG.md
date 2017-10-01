@@ -1,5 +1,14 @@
 # Change Log
 
+## [v1.0.1](https://github.com/TheMeier/puppetlabs-rsync/tree/v1.0.1) (2017-10-01)
+[Full Changelog](https://github.com/TheMeier/puppetlabs-rsync/compare/v1.0.0...v1.0.1)
+
+
+**Features:**
+
+- Add $reverse\_lookup parameter to rsync::server::module
+
+
 ## [1.0.0](https://github.com/TheMeier/puppetlabs-rsync/tree/1.0.0) (2017-07-30)
 [Full Changelog](https://github.com/TheMeier/puppetlabs-rsync/compare/v0.7.0...1.0.0)
 
