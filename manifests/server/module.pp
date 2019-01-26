@@ -18,8 +18,10 @@
 # @param auth_users list of usernames that will be allowed to connect to this module
 # @param hosts_allow list of patterns allowed to connect to this module (man 5 rsyncd.conf for details)
 # @param hosts_deny list of patterns allowed to connect to this module (man 5 rsyncd.conf for details)
-# @param transfer_logging parameter enables per-file logging of downloads and uploads in a format somewhat similar to that used by ftp daemons.
-# @param log_format This parameter allows you to specify the format used for logging file transfers when transfer logging is enabled. See the rsyncd.conf documentation for more details.
+# @param transfer_logging parameter enables per-file logging of downloads and uploads in a format
+#      somewhat similar to that used by ftp daemons.
+# @param log_format This parameter allows you to specify the format used for logging file transfers when transfer
+#      logging is enabled. See the rsyncd.conf documentation for more details.
 # @param refuse_options list of rsync command line options that will be refused by your rsync daemon.
 # @param log_file  log messages to the indicated file rather than using syslog
 # @param dont_compress wildcard patterns that should not be compressed when pulling files from the daemon
@@ -28,7 +30,8 @@
 # @param pre_xfer_exec command to be run before and/or after the transfer.
 # @param post_xfer_exec command to be run before and/or after the transfer.
 # @param ignore_nonreadable
-# @param reverse_lookup Controls whether the daemon performs a reverse lookup on the client’s IP address to determine its hostname, which is used for "hosts allow"/"hosts deny" checks and the "%h" log escape.
+# @param reverse_lookup Controls whether the daemon performs a reverse lookup on the client’s IP address to determine its hostname,
+#      which is used for "hosts allow"/"hosts deny" checks and the "%h" log escape.
 # @example
 #   rsync::server::module { 'repo':
 #     path    => $base,
