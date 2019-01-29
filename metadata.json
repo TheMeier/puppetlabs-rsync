@@ -1,16 +1,12 @@
 {
   "name": "themeier-rsync",
   "version": "1.0.2",
-  "author": "Christoph Maser",
+  "author": "TheMeier",
   "summary": "Manages rsync clients, repositories, and servers, & providies defines to easily grab data via rsync.",
   "license": "Apache-2.0",
   "source": "https://github.com/TheMeier/puppetlabs-rsync",
   "project_page": "https://github.com/TheMeier/puppetlabs-rsync",
   "issues_url": "https://github.com/TheMeier/puppetlabs-rsync/issues",
-  "tags": [
-    "rsync",
-    "rsyncd"
-  ],
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",
@@ -55,5 +51,12 @@
       "name": "puppet",
       "version_requirement": ">=4.0.0 <5.0.0"
     }
-  ]
+  ],
+  "tags": [
+    "rsync",
+    "rsyncd"
+  ],
+  "pdk-version": "1.8.0",
+  "template-url": "https://github.com/puppetlabs/pdk-templates.git",
+  "template-ref": "1.9.0-0-g7281db5"
 }
