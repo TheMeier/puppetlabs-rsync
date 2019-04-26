@@ -57,7 +57,7 @@
     "rsync",
     "rsyncd"
   ],
-  "pdk-version": "1.9.0",
-  "template-url": "https://github.com/puppetlabs/pdk-templates.git",
-  "template-ref": "heads/master-0-g615413e"
+  "pdk-version": "1.10.0",
+  "template-url": "https://github.com/puppetlabs/pdk-templates.git#1.10.0",
+  "template-ref": "1.10.0-0-gbba9ac3"
 }
