@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [1.0.3](https://github.com/TheMeier/themeier-rsync/tree/1.0.3) (2020-05-23)
 
-[Full Changelog](https://github.com/TheMeier/themeier-rsync/compare/v1.0.2...1.0.3)
+[Full Changelog](https://github.com/TheMeier/themeier-rsync/compare/v1.0.2...v1.0.3)
 
 ### Added
 
