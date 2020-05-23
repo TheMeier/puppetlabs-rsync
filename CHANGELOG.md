@@ -9,6 +9,7 @@ All notable changes to this project will be documented in this file. The format 
 ### Added
 
 - pdk update
+- update medatata
 
 ## [1.0.2](https://github.com/TheMeier/themeier-rsync/tree/1.0.2) (2019-02-19)
 
