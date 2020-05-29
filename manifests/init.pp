@@ -1,4 +1,5 @@
 # rsync
+# test
 # @summary install rsync package and create rsync::put/get instances
 # @param package_ensure ensure parameter for package-resource
 # @param manage_package whether to manage the package-resource
